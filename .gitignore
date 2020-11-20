@@ -34,3 +34,6 @@ node_modules
 
 
 lib/worker.js
+
+.vscode
+package-lock.json
