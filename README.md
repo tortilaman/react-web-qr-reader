@@ -4,7 +4,7 @@ A [React](https://facebook.github.io/react/) component for reading QR codes from
 
 ## Demo
 
-[https://yudielcurbelo.github.io/react-qr-reader](https://yudielcurbelo.github.io/react-qr-reader)
+[https://yudielcurbelo.github.io/react-web-qr-reader](https://yudielcurbelo.github.io/react-web-qr-reader)
 
 ## Known Issues
 
@@ -15,13 +15,13 @@ A [React](https://facebook.github.io/react/) component for reading QR codes from
 
 ## Install
 
-`npm install --save react-qr-reader`
+`npm install --save react-web-qr-reader`
 
 ## Example
 
 ```js
 import React, { useState } from 'react';
-import QrReader from 'react-qr-reader';
+import QrReader from 'react-web-qr-reader';
 
 const Example = () => {
   const delay = 500;
