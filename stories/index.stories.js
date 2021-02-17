@@ -1,24 +1,27 @@
-import React, { Component } from "react";
-import { storiesOf, action } from "@storybook/react";
-import Reader from "../lib";
+import React, { Component } from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import Reader from '../lib';
 
 class Wrapper extends Component {
   constructor(props) {
     super(props);
-    this.state = { facingMode: "user", delay: 500, on: true };
+    this.state = { facingMode: 'user', delay: 500, on: true };
   }
   render() {
     const { selectFacingMode, selectDelay, legacyMode, onAndOff } = this.props;
 
     return (
-      <div style={{ width: "400px", margin: "auto" }}>
+      <div style={{ width: '400px', margin: 'auto' }}>
         {onAndOff && (
           <button onClick={() => this.setState({ on: !this.state.on })}>
-            {this.state.on ? "Turn off" : "Turn on"}
+            {this.state.on ? 'Turn off' : 'Turn on'}
           </button>
         )}
         {selectFacingMode && (
-          <select onChange={e => this.setState({ facingMode: e.target.value })}>
+          <select
+            onChange={(e) => this.setState({ facingMode: e.target.value })}
+          >
             <option value="user">User</option>
             <option value="environment">Environment</option>
           </select>
@@ -32,16 +35,19 @@ class Wrapper extends Component {
               placeholder="Delay in ms"
               type="number"
               value={this.state.delay}
-              onChange={e => this.setState({ delay: parseInt(e.target.value) })}
+              onChange={(e) =>
+                this.setState({ delay: parseInt(e.target.value) })
+              }
             />
           </div>
         )}
         {this.state.on && (
           <Reader
-            onError={action("Error")}
-            onScan={action("Scan")}
-            onLoad={action("Load")}
-            onImageLoad={action("ImageLoad")}
+            onError={action('Error')}
+            onScan={action('Scan')}
+            onLoad={action('Load')}
+            onImageLoad={action('ImageLoad')}
+            onImageLoad={action('ImageLoad')}
             ref="reader"
             facingMode={this.state.facingMode}
             legacyMode={legacyMode}
@@ -60,9 +66,9 @@ class Wrapper extends Component {
   }
 }
 
-storiesOf("QR Reader", module)
-  .add("FacingMode not specified", () => <Wrapper />)
-  .add("Choose facingMode", () => <Wrapper selectFacingMode />)
-  .add("Legacy mode", () => <Wrapper legacyMode />)
-  .add("Choose delay", () => <Wrapper selectDelay />)
-  .add("On and off", () => <Wrapper onAndOff />);
+storiesOf('QR Reader', module)
+  .add('FacingMode not specified', () => <Wrapper />)
+  .add('Choose facingMode', () => <Wrapper selectFacingMode />)
+  .add('Legacy mode', () => <Wrapper legacyMode />)
+  .add('Choose delay', () => <Wrapper selectDelay />)
+  .add('On and off', () => <Wrapper onAndOff />);
