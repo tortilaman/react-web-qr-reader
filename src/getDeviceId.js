@@ -7,11 +7,13 @@ function defaultDeviceIdChooser(filteredDevices, videoDevices, facingMode) {
   if (videoDevices.length == 1 || facingMode == 'user') {
     return videoDevices[0].deviceId;
   }
+
   return videoDevices[1].deviceId;
 }
 
 const getFacingModePattern = (facingMode) =>
   facingMode == 'environment' ? /rear|back|environment/i : /front|user|face/i;
+
 function getDeviceId(
   facingMode,
   chooseDeviceId = defaultDeviceIdChooser,

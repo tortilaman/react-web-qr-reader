@@ -151,7 +151,7 @@ module.exports = class Reader extends Component {
         isSafari || isFirefox
           ? Promise.resolve(props.constraints || constraints)
           : getDeviceId(facingMode, undefined, cameraId).then((deviceId) =>
-              Object.assign({}, { deviceId }, props.constraints)
+              Object.assign({ facingMode }, { deviceId }, props.constraints)
             );
 
       vConstraintsPromise
@@ -292,13 +292,7 @@ module.exports = class Reader extends Component {
   }
 
   render() {
-    const {
-      style,
-      className,
-      onImageLoad,
-      showViewFinder,
-      facingMode,
-    } = this.props;
+    const { style, className, showViewFinder, facingMode } = this.props;
     const containerStyle = {
       overflow: 'hidden',
       position: 'relative',
