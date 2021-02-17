@@ -2,7 +2,7 @@
   "name": "react-qr-reader",
   "version": "1.0.0",
   "description": "A react component for reading QR codes from a camera.",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "start": "concurrently --kill-others \"npm run build:watch\" \"npm run storybook\"",
     "build": "gulp",

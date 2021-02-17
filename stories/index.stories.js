@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Reader from '../lib';
+import Reader from '../dist';
 
 class Wrapper extends Component {
   constructor(props) {

@@ -19,7 +19,7 @@ const paths = {
   ],
   worker: 'src/worker.js',
   jsQR: 'node_modules/jsqr/dist/jsQR.js',
-  destination: './lib',
+  destination: './dist',
 };
 
 function clean() {

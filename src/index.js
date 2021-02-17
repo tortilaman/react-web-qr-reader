@@ -10,7 +10,7 @@ require('webrtc-adapter');
 
 // Inline worker.js as a string value of workerBlob.
 // eslint-disable-next-line
-let workerBlob = createBlob([__inline('../lib/worker.js')], {
+let workerBlob = createBlob([__inline('../dist/worker.js')], {
   type: 'application/javascript',
 });
 
