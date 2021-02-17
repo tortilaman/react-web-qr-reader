@@ -9,7 +9,7 @@ class Wrapper extends Component {
     this.state = { facingMode: 'user', delay: 500, on: true };
   }
   render() {
-    const { selectFacingMode, selectDelay, legacyMode, onAndOff } = this.props;
+    const { selectFacingMode, selectDelay, onAndOff } = this.props;
 
     return (
       <div style={{ width: '400px', margin: 'auto' }}>
@@ -50,16 +50,10 @@ class Wrapper extends Component {
             onImageLoad={action('ImageLoad')}
             ref="reader"
             facingMode={this.state.facingMode}
-            legacyMode={legacyMode}
             maxImageSize={1000}
             delay={this.state.delay}
             className="reader-container"
           />
-        )}
-        {legacyMode && (
-          <button onClick={() => this.refs.reader.openImageDialog()}>
-            Open Image Dialog
-          </button>
         )}
       </div>
     );
@@ -69,6 +63,5 @@ class Wrapper extends Component {
 storiesOf('QR Reader', module)
   .add('FacingMode not specified', () => <Wrapper />)
   .add('Choose facingMode', () => <Wrapper selectFacingMode />)
-  .add('Legacy mode', () => <Wrapper legacyMode />)
   .add('Choose delay', () => <Wrapper selectDelay />)
   .add('On and off', () => <Wrapper onAndOff />);
