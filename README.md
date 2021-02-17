@@ -95,10 +95,6 @@ export default Example;
 
 `npm run storybook`
 
-### Linting
-
-`npm run lint`
-
 ## Tested platforms
 
 - Chrome macOs & Android

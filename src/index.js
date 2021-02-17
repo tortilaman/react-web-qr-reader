@@ -1,15 +1,23 @@
-const React = require('react');
+import React from 'react';
 const { Component } = React;
-const PropTypes = require('prop-types');
-const { getDeviceId, getFacingModePattern } = require('./getDeviceId');
-const havePropsChanged = require('./havePropsChanged');
-const createBlob = require('./createBlob');
+import {
+  func,
+  oneOfType,
+  number,
+  bool,
+  oneOf,
+  string,
+  any,
+  object,
+} from 'prop-types';
+import { getDeviceId } from './getDeviceId';
+import havePropsChanged from './havePropsChanged';
+import createBlob from './createBlob';
 
 // Require adapter to support older browser implementations
-require('webrtc-adapter');
+import 'webrtc-adapter';
 
 // Inline worker.js as a string value of workerBlob.
-// eslint-disable-next-line
 let workerBlob = createBlob([__inline('../dist/worker.js')], {
   type: 'application/javascript',
 });
@@ -17,20 +25,20 @@ let workerBlob = createBlob([__inline('../dist/worker.js')], {
 // Props that are allowed to change dynamically
 const propsKeys = ['delay', 'facingMode'];
 
-module.exports = class Reader extends Component {
+export default class Reader extends Component {
   static propTypes = {
-    onScan: PropTypes.func.isRequired,
-    onError: PropTypes.func.isRequired,
-    onLoad: PropTypes.func,
-    onImageLoad: PropTypes.func,
-    delay: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    facingMode: PropTypes.oneOf(['user', 'environment']),
-    cameraId: PropTypes.string,
-    resolution: PropTypes.number,
-    showViewFinder: PropTypes.bool,
-    style: PropTypes.any,
-    className: PropTypes.string,
-    constraints: PropTypes.object,
+    onScan: func.isRequired,
+    onError: func.isRequired,
+    onLoad: func,
+    onImageLoad: func,
+    delay: oneOfType([number, bool]),
+    facingMode: oneOf(['user', 'environment']),
+    cameraId: string,
+    resolution: number,
+    showViewFinder: bool,
+    style: any,
+    className: string,
+    constraints: object,
   };
   static defaultProps = {
     delay: 500,
@@ -220,7 +228,7 @@ module.exports = class Reader extends Component {
 
   check() {
     const { resolution, delay } = this.props;
-    const { preview, canvas, img } = this.els;
+    const { preview, canvas } = this.els;
 
     // Get image/video dimensions
     let width = Math.floor(preview.videoWidth);
@@ -263,7 +271,10 @@ module.exports = class Reader extends Component {
   handleWorkerMessage(e) {
     const { onScan, delay } = this.props;
     const decoded = e.data;
-    onScan(decoded || null);
+
+    if (decoded) {
+      onScan(decoded);
+    }
 
     if (typeof delay == 'number' && this.worker) {
       this.timeout = setTimeout(this.check, delay);
@@ -292,7 +303,7 @@ module.exports = class Reader extends Component {
   }
 
   render() {
-    const { style, className, showViewFinder, facingMode } = this.props;
+    const { style, className, showViewFinder } = this.props;
     const containerStyle = {
       overflow: 'hidden',
       position: 'relative',
@@ -314,16 +325,12 @@ module.exports = class Reader extends Component {
       objectFit: 'cover',
       transform: this.state.mirrorVideo ? 'scaleX(-1)' : undefined,
     };
-    const imgPreviewStyle = {
-      ...previewStyle,
-      objectFit: 'scale-down',
-    };
     const viewFinderStyle = {
       top: 0,
       left: 0,
       zIndex: 1,
       boxSizing: 'border-box',
-      border: '50px solid rgba(0, 0, 0, 0.3)',
+      border: '20px solid rgba(0, 0, 0, 0.3)',
       boxShadow: 'inset 0 0 0 5px rgba(255, 0, 0, 0.5)',
       position: 'absolute',
       width: '100%',
@@ -343,4 +350,4 @@ module.exports = class Reader extends Component {
       </section>
     );
   }
-};
+}
