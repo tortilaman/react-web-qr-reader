@@ -1,40 +1,38 @@
-import React, { Component } from 'react'
-import QrReader from 'react-qr-reader'
+import React, { useState } from 'react';
 
-class Example extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      delay: 500,
-      result: 'No result',
-    }
+import QrReader from 'react-qr-reader';
 
-    this.handleScan = this.handleScan.bind(this)
-  }
-  handleScan(result){
-    if(result){
-      this.setState({ result })
-    }
-  }
-  handleError(err){
-    console.error(err)
-  }
-  render(){
-    const previewStyle = {
-      height: 240,
-      width: 320,
-    }
+const Example = () => {
+  const delay = 500;
 
-    return(
-      <div>
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          />
-        <p>{this.state.result}</p>
-      </div>
-    )
-  }
-}
+  const previewStyle = {
+    height: 240,
+    width: 320,
+  };
+
+  const [result, setResult] = useState('No result');
+
+  const handleScan = (result) => {
+    if (result) {
+      setResult(result);
+    }
+  };
+
+  const handleError = (error) => {
+    console.log(error);
+  };
+
+  return (
+    <>
+      <QrReader
+        delay={delay}
+        style={previewStyle}
+        onError={handleError}
+        onScan={handleScan}
+      />
+      <p>{result}</p>
+    </>
+  );
+};
+
+export default Example;

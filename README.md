@@ -12,10 +12,10 @@ A [React](https://facebook.github.io/react/) component for reading QR codes from
 
 ## Known Issues
 
-* Server side rendering won't work so only require the component when rendering in a browser environment.
-* Due to browser implementations the camera can only be accessed over https or localhost.
-* In Firefox a prompt will be shown to the user asking which camera to use, so `facingMode` will not affect it.
-* On IOS 11 it is only supported on Safari and not on Chrome or Firefox due to Apple making the API not available to 3rd party browsers.
+- Server side rendering won't work so only require the component when rendering in a browser environment.
+- Due to browser implementations the camera can only be accessed over https or localhost.
+- In Firefox a prompt will be shown to the user asking which camera to use, so `facingMode` will not affect it.
+- On IOS 11 it is only supported on Safari and not on Chrome or Firefox due to Apple making the API not available to 3rd party browsers.
 
 ## Install
 
@@ -24,39 +24,43 @@ A [React](https://facebook.github.io/react/) component for reading QR codes from
 ## Example
 
 ```js
-import React, { Component } from 'react'
-import QrReader from 'react-qr-reader'
+import React, { useState } from 'react';
+import QrReader from 'react-qr-reader';
 
-class Test extends Component {
-  state = {
-    result: 'No result'
-  }
+const Example = () => {
+  const delay = 500;
 
-  handleScan = data => {
-    if (data) {
-      this.setState({
-        result: data
-      })
+  const previewStyle = {
+    height: 240,
+    width: 320,
+  };
+
+  const [result, setResult] = useState('No result');
+
+  const handleScan = (result) => {
+    if (result) {
+      setResult(result);
     }
-  }
-  handleError = err => {
-    console.error(err)
-  }
-  render() {
-    return (
-      <div>
-        <QrReader
-          delay={300}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          style={{ width: '100%' }}
-        />
-        <p>{this.state.result}</p>
-      </div>
-    )
-  }
-}
+  };
 
+  const handleError = (error) => {
+    console.log(error);
+  };
+
+  return (
+    <>
+      <QrReader
+        delay={delay}
+        style={previewStyle}
+        onError={handleError}
+        onScan={handleScan}
+      />
+      <p>{result}</p>
+    </>
+  );
+};
+
+export default Example;
 ```
 
 ## Props
@@ -80,7 +84,7 @@ class Test extends Component {
 | style          | a valid React style     | none          | Styling for the container element. **Warning** The preview will always keep its 1:1 aspect ratio.                                                                                                                                                                                                                                                                          |
 | className      | string                  | none          | ClassName for the container element.                                                                                                                                                                                                                                                                                                                                       |
 | showViewFinder | boolean                 | `true`        | Show or hide the build in view finder. See demo                                                                                                                                                                                                                                                                                                                            |
-| constraints    | object                  | `null`          | Use custom camera constraints that the override default behavior. [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints)                                                                                                                                                                                                                                                                                                                            |
+| constraints    | object                  | `null`        | Use custom camera constraints that the override default behavior. [MediaTrackConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints)                                                                                                                                                                                                          |
 | legacyMode     | boolean                 | `false`       | If the device does not allow camera access (e.g. IOS Browsers, Safari) you can enable legacyMode to allow the user to take a picture (On a mobile device) or use an existing one. To trigger the image dialog just call the method `openImageDialog` from the parent component. **Warning** You must call the method from a user action (eg. click event on some element). |
 
 ## Dev
@@ -103,9 +107,9 @@ class Test extends Component {
 
 ## Tested platforms
 
-* Chrome macOs & Android
-* Firefox macOs & Android
-* Safari macOs & IOS
+- Chrome macOs & Android
+- Firefox macOs & Android
+- Safari macOs & IOS
 
 ## License
 
