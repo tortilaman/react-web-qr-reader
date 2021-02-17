@@ -1,9 +1,9 @@
 function NoVideoInputDevicesError() {
-  this.name = 'NoVideoInputDevicesError'
-  this.message = 'No video input devices found'
+  this.name = 'NoVideoInputDevicesError';
+  this.message = 'No video input devices found';
 }
-NoVideoInputDevicesError.prototype = new Error()
+NoVideoInputDevicesError.prototype = new Error();
 
 module.exports = {
   NoVideoInputDevicesError,
-}
+};

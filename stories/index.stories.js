@@ -6,7 +6,7 @@ import Reader from '../dist';
 class Wrapper extends Component {
   constructor(props) {
     super(props);
-    this.state = { facingMode: 'user', delay: 500, on: true };
+    this.state = { facingMode: 'environment', delay: 500, on: true };
   }
   render() {
     const { selectFacingMode, selectDelay, onAndOff } = this.props;
@@ -22,8 +22,8 @@ class Wrapper extends Component {
           <select
             onChange={(e) => this.setState({ facingMode: e.target.value })}
           >
-            <option value="user">User</option>
             <option value="environment">Environment</option>
+            <option value="user">User</option>
           </select>
         )}
         {selectDelay && (
