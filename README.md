@@ -1,14 +1,10 @@
-[![npm version](https://badge.fury.io/js/react-qr-reader.svg)](https://badge.fury.io/js/react-qr-reader)
-
-## Modified from jodusnodus/react-qr-reader
-
 ## Introduction
 
 A [React](https://facebook.github.io/react/) component for reading QR codes from the webcam. It uses the WebRTC standards for reading webcam data and [jsQR](https://github.com/cozmo/jsQR) is used for detecting QR codes in that data. To optimise the speed and experience, a web-worker is used to offload the heavy QR code algorithm on a separate process. The web worker is inlined and loaded on creation of the component.
 
 ## Demo
 
-[https://jodusnodus.github.io/react-qr-reader](https://jodusnodus.github.io/react-qr-reader)
+[https://yudielcurbelo.github.io/react-qr-reader](https://yudielcurbelo.github.io/react-qr-reader)
 
 ## Known Issues
 
@@ -114,6 +110,7 @@ export default Example;
 The MIT License (MIT)
 
 Copyright (c) 2018 Thomas Billiet
+Copyright (c) 2021 Yudiel Curbelo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
