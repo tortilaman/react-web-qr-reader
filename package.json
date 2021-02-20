@@ -20,6 +20,7 @@
     "qrcode",
     "qrreader"
   ],
+  "types": "dist/index.d.ts",
   "directories": {
     "dist": "dist"
   },

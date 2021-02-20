@@ -19,6 +19,7 @@ const paths = {
   ],
   worker: 'src/worker.js',
   jsQR: 'node_modules/jsqr/dist/jsQR.js',
+  type: 'src/index.d.ts',
   destination: './dist',
 };
 
@@ -42,9 +43,13 @@ function build() {
     .pipe(gulp.dest(paths.destination));
 }
 
+function copy() {
+  return gulp.src(paths.type).pipe(gulp.dest(paths.destination));
+}
+
 function watch() {
-  gulp.watch(paths.scripts, series(clean, worker, build));
+  gulp.watch(paths.scripts, series(clean, worker, build, copy));
 }
 
 exports.watch = series(watch);
-exports.default = series(clean, worker, build);
+exports.default = series(clean, worker, build, copy);
